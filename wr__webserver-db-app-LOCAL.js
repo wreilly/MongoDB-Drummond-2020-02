@@ -1,12 +1,10 @@
-/* EC2 VERSION
-ec2-3-221-127-38.compute-1.amazonaws.com
+/*   LOCAL VERSION
+localhost
 
 2020-06-07
 http://www.robert-drummond.com/2013/04/25/a-node-js-application-on-amazon-cloud-part-3-a-simple-webserver-in-javascript-using-node-express-and-mongodb/
 
 https://github.com/wreilly/MongoDB-Drummond-2020-02
-
-
  */
 
 const http = require('http');
@@ -20,7 +18,7 @@ let db;
 const configWRLocal = {
     "USER": "",
     "PASS": "",
-    "HOST": "ec2-3-221-127-38.compute-1.amazonaws.com",
+    "HOST": "localhost",
     "PORT": "27017",
     "DATABASE": "video"
 };
@@ -70,21 +68,18 @@ const Greeting = mongoose.Model('Greeting', greetingSchema);
 */
 const Greeting = mongoose.model('Greeting', greetingSchema);
 
-console.log('\n001 Attempting to connect to MongoDB instance on EC2!... ', configWRLocal.HOST)
+console.log('\n001 Attempting to connect to MongoDB instance on LOCAL!... ', configWRLocal.HOST)
 
-if ( !(db = mongoose.connect(dbConnectPathProtocol)) )
-    console.log('Unable to connect to MongoDB at ' + dbConnectPathProtocol);
-else
-    console.log('connecting to MongoDB at ' + dbConnectPathProtocol);
+db = mongoose.connect(dbConnectPathProtocol);
 
 
 mongoose.connection.on('error', function(err) {
    console.log('database connect error: ', err);
 });
 
-mongoose.connection.once('open', function() {
+mongoose.connection.once('openUri', function() {
     let greeting = '';
-    console.log('database ' + configWRLocal.DATABASE + '  is now open on ' + configWRLocal.HOST)
+    console.log('database ' + configWRLocal.DATABASE + '  is now open OpenUri on ' + configWRLocal.HOST)
 
     Greeting.find( function (err, greetings) {
         if (!err && greetings) {
