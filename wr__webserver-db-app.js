@@ -47,9 +47,9 @@ const dbConnectPathProtocol = "mongodb://" +
     configWRLocal.PORT + "/" +
     configWRLocal.DATABASE;
 
-console.log('dbConnectPathProtocol: ', dbConnectPathProtocol)
+console.log('EDITED 999 !!! dbConnectPathProtocol: ', dbConnectPathProtocol)
 
-const standardGreeting = 'Hello World!'; // sez Dennis Ritchie
+const standardGreeting = 'Hello World! the 2nd'; // sez Dennis Ritchie
 
 
 /*
@@ -70,7 +70,7 @@ const Greeting = mongoose.Model('Greeting', greetingSchema);
 */
 const Greeting = mongoose.model('Greeting', greetingSchema);
 
-console.log('\n001 Attempting to connect to MongoDB instance on EC2!... ', configWRLocal.HOST)
+console.log('\nEDITED 999 !!! 001 Attempting to connect to MongoDB instance on EC2!... ', configWRLocal.HOST)
 
 if ( !(db = mongoose.connect(dbConnectPathProtocol)) )
     console.log('Unable to connect to MongoDB at ' + dbConnectPathProtocol);
@@ -102,7 +102,7 @@ mongoose.connection.once('open', function() {
                 console.log('btw greetingsav was ', greetingsav); // see notes at bottom
                 Greeting.find( function(err, greetings) {
                     if (greetings) {
-                        console.log('checked after save: did find ' + greetings.length + ' greetings now in the database. Tres bien.')
+                        console.log('checked after save: did find ' + greetings.length + ' greetings now in the database. Tres bien. EDITED 999 !!! ')
                     }
                 })
             }
@@ -123,7 +123,7 @@ app.get('/', function(req, res) {
             next(err)
         } else {
             if(greetings) {
-                console.log('found ' + greetings.length + ' greetings in the database. Great.')
+                console.log('found ' + greetings.length + ' greetings in the database. Great. EDITED 999 !!! ')
                 responseText = greetings[0].wr__sentence
             }
             console.log('sending greeting to client ' + responseText)
@@ -140,7 +140,7 @@ app.use(function (err, req, res, next) {
     }
 });
 
-console.log('Starting the Express / Node web server...');
+console.log('Starting the Express / Node web server... EDITED 999 !!! ');
 app.listen(9000);
 console.log('Webserver is listening on port 9000');
 
