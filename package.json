@@ -1,0 +1,23 @@
+{
+  "name": "mongodb-drummond-2020-02",
+  "version": "1.0.0",
+  "description": "Testing 1) git init local 2) github new repository 3) git remote add... 4) THEN npm init",
+  "main": "wr__webserver-db-app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wreilly/MongoDB-Drummond-2020-02.git"
+  },
+  "author": "wreilly2001@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wreilly/MongoDB-Drummond-2020-02/issues"
+  },
+  "homepage": "https://github.com/wreilly/MongoDB-Drummond-2020-02#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^4.13.20"
+  }
+}
