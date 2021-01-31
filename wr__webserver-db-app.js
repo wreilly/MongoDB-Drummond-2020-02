@@ -17,10 +17,23 @@ const app = express();
 
 let db;
 
+// WR__ 2021-01-31
+/* Finding:
+Each STOP and START of EC2 w. MongoDB
+gets you a NEW Public IP # and Public DNS URL.
+
+WAS (2020...)
+ec2-3-221-127-38.compute-1.amazonaws.com
+IS NOW (2021 Jan/Feb)
+ec2-18-207-104-167.compute-1.amazonaws.com
+*/
+const myHostAtAWS = 'ec2-18-207-104-167.compute-1.amazonaws.com';
+
 const configWRLocal = {
     "USER": "",
     "PASS": "",
-    "HOST": "ec2-3-221-127-38.compute-1.amazonaws.com",
+// WAS:    "HOST": "ec2-3-221-127-38.compute-1.amazonaws.com",
+    "HOST": myHostAtAWS,
     "PORT": "27017",
     "DATABASE": "video"
 };

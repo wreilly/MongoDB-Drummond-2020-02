@@ -15,10 +15,13 @@ const app = express();
 
 let db;
 
+const myHost = "localhost";
+
 const configWRLocal = {
     "USER": "",
     "PASS": "",
-    "HOST": "localhost",
+//    "HOST": "localhost",
+    "HOST": myHost,
     "PORT": "27017",
     "DATABASE": "video"
 };
@@ -72,14 +75,37 @@ console.log('\n001 Attempting to connect to MongoDB instance on LOCAL!... ', con
 
 db = mongoose.connect(dbConnectPathProtocol);
 
+// WR__ 2021-01-31
+console.log('WR__ 2021 db is mongoose.connect(dbConnectPathProtocol) - ', db);
+/*
+Mongoose {
+  connections: [
+    NativeConnection {
+      base: [Mongoose],
+      collections: [Object],
+      models: [Object],
+      config: [Object],
+      replica: false,
+      hosts: null,  <<  ok ???
+      host: 'localhost',  << OK
+      port: 27017,
+      user: undefined,
+      pass: undefined,
+      name: 'video',
+....
+*/
 
 mongoose.connection.on('error', function(err) {
    console.log('database connect error: ', err);
 });
 
-mongoose.connection.once('openUri', function() {
+// WR__ 2021-01-31
+// AWS version uses 'open' not 'openUri'
+// ^^^^ THAT IS WHAT FIXED IT. Now works on LOCAL too = good
+mongoose.connection.once('open', function() {
+// mongoose.connection.once('openUri', function() {
     let greeting = '';
-    console.log('database ' + configWRLocal.DATABASE + '  is now open OpenUri on ' + configWRLocal.HOST)
+    console.log('database ' + configWRLocal.DATABASE + '  is now open on ' + configWRLocal.HOST)
 
     Greeting.find( function (err, greetings) {
         if (!err && greetings) {
